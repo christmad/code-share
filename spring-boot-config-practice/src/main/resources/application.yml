@@ -1,0 +1,27 @@
+#spring:
+#  profiles:
+#    active: dev
+
+my:
+  first:
+    name: christ-1st-default
+    age: 10
+  second:
+    name: christ-2nd-default
+    age: 20
+
+# ------ spring rabbitmq 配置 ------ #
+#spring:
+#  rabbitmq:
+#    host: 192.168.33.50
+#    port: 5672
+#    username: admin
+#    password: admin
+#    virtual-host: /
+#    publisher-confirms: false
+#    publisher-returns: false
+#
+#    template:
+#      retry:
+#        enabled: true
+#        initial-interval: 2s
