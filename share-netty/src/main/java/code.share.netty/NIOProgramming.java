@@ -22,7 +22,11 @@ public class NIOProgramming {
         Selector serverSelector = Selector.open();      // serverSelector 负责轮询是否有新的连接
         Selector clientSelector = Selector.open();      // clientSelector 负责轮询连接是否有数据可读
 
-        // 模拟服务端接收新连接，demo中只用一条线程去处理
+        // 模拟服务端接收新连接。
+        // 在 NIO server 中使用了两条线程，对应了两个 selector：
+        // 一条线程专门负责处理新连接，通过 accept函数；对应代码中的 selector 为 serverSelector
+        // 另一条线程专门负责处理已有连接上的读事件，该线程持有 clientSelector，并对注册到这个selector的连接上的读事件处理，demo中的处理是通过 println 函数输出
+        // 注意：NIO 中的 selector.select 仍是阻塞的, 其优势并不是对于单个连接能处理得更快，而是 select 能返回多个就绪的连接，即能处理更多的连接
         new Thread(() -> {
             try {
                 // NIO服务端启动
